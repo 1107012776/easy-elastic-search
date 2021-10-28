@@ -1,6 +1,9 @@
 <?php
 
-namespace PhpEasyData\Inter;
+namespace PhpEasyData\Core;
+use PhpEasyData\Driver\ElasticSearchDriver;
+use PhpEasyData\Inter\Driver;
+
 /**
  * Created by PhpStorm.
  * User: 11070
@@ -9,19 +12,37 @@ namespace PhpEasyData\Inter;
  */
 abstract class Model
 {
+    protected $tableName = '';
+    protected $driverClass = ''; // string
     /**
      * @var Driver
      */
     protected $driver;
-
-    public function findAll($params)
+    public function __construct()
     {
-        return $this->driver->findAll($params);
+        /**
+         * @var Driver $driverClass
+         */
+        $driverClass = $this->driverClass;
+        $this->driver = $driverClass::getInstance($this->tableName);
     }
 
-    public function find($params)
+    public function insert($data){
+        return $this->driver->insert($data);
+    }
+
+    public function save($data){
+        return $this->driver->save($data);
+    }
+
+    public function findAll()
     {
-        return $this->driver->find($params);
+        return $this->driver->findAll();
+    }
+
+    public function find()
+    {
+        return $this->driver->find();
 
     }
 

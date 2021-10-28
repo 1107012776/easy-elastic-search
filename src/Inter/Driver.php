@@ -9,13 +9,21 @@ namespace PhpEasyData\Inter;
  */
 interface Driver
 {
-    public function findAll($params);
+    public static function getInstance($tableName);
 
-    public function find($params);
+    public function __construct($tableName);
+
+    public function findAll();
+
+    public function find();
 
     public function where($params);
 
     public function limit($offset,$limit);
 
     public function order($params);
+
+    public function insert($params);
+
+    public function save($params);
 }

@@ -10,3 +10,5 @@ vendor
 composer.lock
 
 phpunit.phar
+composer.phar
+.env
