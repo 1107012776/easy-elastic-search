@@ -34,4 +34,10 @@ class SearchTest extends TestCase{
       print_r($res);
     }
 
+    public function testAll(){
+        $user = new UserModel();
+        $res = $user->findAll();
+        print_r($res);
+    }
+
 }
