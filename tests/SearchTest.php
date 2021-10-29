@@ -52,7 +52,7 @@ class SearchTest extends TestCase{
 
     public function testAll1(){
         $user = new UserModel();
-        $res = $user->where([
+        $res = $user->field(['name'])->where([
             'name' => 111
         ])->findAll();
         print_r($res);
