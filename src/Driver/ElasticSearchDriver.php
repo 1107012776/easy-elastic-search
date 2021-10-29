@@ -195,6 +195,7 @@ class ElasticSearchDriver implements DriverInter,DriverInitInter
     /**
      * 查询where条件解析
      * @return array
+     * https://www.cnblogs.com/yjf512/p/4897294.html
      */
     protected function _queryPre()
     {
