@@ -24,7 +24,7 @@ class SearchTest extends TestCase{
         ConfigEnv::loadFile('.env');
     }
 
-    public function testTime(){
+    public function testConfig(){
        var_dump(ConfigEnv::get('elasticSearch.host'));
     }
 
@@ -46,6 +46,12 @@ class SearchTest extends TestCase{
     public function testAll(){
         $user = new UserModel();
         $res = $user->order('name asc,_id desc')->findAll();
+        print_r($res);
+    }
+
+    public function testOne(){
+        $user = new UserModel();
+        $res = $user->order('name asc,_id desc')->find();
         print_r($res);
     }
 
