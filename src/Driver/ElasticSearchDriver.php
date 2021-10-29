@@ -108,12 +108,37 @@ class ElasticSearchDriver implements Driver
         ];
         !empty($id) && $params['id'] = $id;
         $response = $this->client->index($params);
-        return $response;
+        if(!empty($response['_shards']['successful'])
+        && !empty($response['_id'])
+        ){
+           return $response['_id'];
+        }
+        return false;
     }
 
-    public function save($params)
+    public function save($data)
     {
-
+        if(isset($data['id'])){
+            unset($data['id']);
+        }
+        if(!empty($this->_condition['id'])){
+            $id = $this->_condition['id'];
+        }else{
+            return false;
+        }
+        $params = [
+            'index' => $this->tableName,
+            'type' => '_doc',
+            'body' => $data
+        ];
+        !empty($id) && $params['id'] = $id;
+        $response = $this->client->index($params);
+        if(!empty($response['_shards']['successful'])
+            && !empty($response['_id'])
+        ){
+            return $response['_id'];
+        }
+        return false;
     }
 
 

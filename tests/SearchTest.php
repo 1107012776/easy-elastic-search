@@ -30,8 +30,16 @@ class SearchTest extends TestCase{
 
     public function testInsert(){
       $user = new UserModel();
-      $res = $user->insert(['name' => 111]);
+      $res = $user->insert(['id'=>9,'name' => 1111]);
       print_r($res);
+    }
+
+    public function testSave(){
+        $user = new UserModel();
+        $res = $user->where([
+            'id' => 9
+        ])->save(['name' => 11111]);
+        var_dump($res);
     }
 
     public function testAll(){
