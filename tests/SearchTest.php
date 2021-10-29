@@ -30,8 +30,8 @@ class SearchTest extends TestCase{
 
 
     public function testInsert(){
-      $user = new ArticleModel();
-      $res = $user->insert(['name' => 'John Doe1','tt'=>1]);
+      $article = new ArticleModel();
+      $res = $article->insert(['name' => 'John Doe1','tt'=>1]);
       print_r($res);
     }
 
