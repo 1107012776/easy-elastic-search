@@ -2,7 +2,6 @@
 
 namespace PhpEasyData\Core;
 
-use PhpEasyData\Inter\Driver;
 use PhpEasyData\Inter\DriverInitInter;
 use PhpEasyData\Inter\DriverInter;
 
