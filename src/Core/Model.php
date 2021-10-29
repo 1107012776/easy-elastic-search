@@ -79,8 +79,7 @@ abstract class Model
      */
     public function startTrans()
     {
-        $this->driver->startTrans();
-        return;
+        return $this->driver->startTrans();
     }
 
     /**
