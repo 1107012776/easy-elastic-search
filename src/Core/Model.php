@@ -60,4 +60,47 @@ abstract class Model
     {
         return $this->driver->order($params);
     }
+
+
+    /**
+     * 获取最后插入的id,有可能是插入失败，返回0
+     * @return int
+     */
+    public function getLastInsertId()
+    {
+        return $this->driver->getLastInsertId();
+    }
+
+
+    /**
+     * 启动事务
+     * @access public
+     * @return void
+     */
+    public function startTrans()
+    {
+        $this->driver->startTrans();
+        return;
+    }
+
+    /**
+     * 提交事务
+     * @access public
+     * @return boolean
+     */
+    public function commit()
+    {
+        return $this->driver->commit();
+    }
+
+    /**
+     * 事务回滚
+     * @access public
+     * @return boolean
+     */
+    public function rollback()
+    {
+        return $this->driver->rollback();
+    }
+
 }

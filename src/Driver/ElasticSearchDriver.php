@@ -29,7 +29,7 @@ class ElasticSearchDriver implements Driver
     protected $_last_insert_id = 0;  //最后插入的id
     protected $_offset = 0; //偏移量
     protected $_offset_limit = 0; //偏移之后返回数
-    
+
     public static function getInstance($tableName)
     {
         return new static($tableName);
@@ -44,7 +44,7 @@ class ElasticSearchDriver implements Driver
     public function findAll()
     {
         $body = [];
-        if(!empty($this->_condition)){
+        if (!empty($this->_condition)) {
             $body = [
                 'query' => [
                     'match' => $this->_condition
@@ -63,7 +63,7 @@ class ElasticSearchDriver implements Driver
     public function find()
     {
         $body = [];
-        if(!empty($this->_condition)){
+        if (!empty($this->_condition)) {
             $body = [
                 'query' => [
                     'match' => $this->_condition
@@ -97,7 +97,7 @@ class ElasticSearchDriver implements Driver
 
     public function insert($data)
     {
-        if(isset($data['id'])){
+        if (isset($data['id'])) {
             $id = $data['id'];
             unset($data['id']);
         }
@@ -108,22 +108,23 @@ class ElasticSearchDriver implements Driver
         ];
         !empty($id) && $params['id'] = $id;
         $response = $this->client->index($params);
-        if(!empty($response['_shards']['successful'])
-        && !empty($response['_id'])
-        ){
-           return $response['_id'];
+        if (!empty($response['_shards']['successful'])
+            && !empty($response['_id'])
+        ) {
+            $this->_last_insert_id = $response['_id'];
+            return $response['_id'];
         }
         return false;
     }
 
     public function save($data)
     {
-        if(isset($data['id'])){
+        if (isset($data['id'])) {
             unset($data['id']);
         }
-        if(!empty($this->_condition['id'])){
+        if (!empty($this->_condition['id'])) {
             $id = $this->_condition['id'];
-        }else{
+        } else {
             return false;
         }
         $params = [
@@ -133,12 +134,32 @@ class ElasticSearchDriver implements Driver
         ];
         !empty($id) && $params['id'] = $id;
         $response = $this->client->index($params);
-        if(!empty($response['_shards']['successful'])
+        if (!empty($response['_shards']['successful'])
             && !empty($response['_id'])
-        ){
+        ) {
             return $response['_id'];
         }
         return false;
+    }
+
+    public function getLastInsertId()
+    {
+        return $this->_last_insert_id;
+    }
+
+    public function startTrans()
+    {
+
+    }
+
+    public function commit()
+    {
+
+    }
+
+    public function rollback()
+    {
+
     }
 
 
