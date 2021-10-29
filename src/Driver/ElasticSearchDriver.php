@@ -75,6 +75,9 @@ class ElasticSearchDriver implements DriverInter,DriverInitInter
         if (!empty($this->_order_str)) {
             $body['sort'] = $this->_getSort();
         }
+        if (!empty($this->_field)) {
+            $body['_source'] = $this->_field;
+        }
         $params = [
             'index' => $this->tableName,
             'type' => '_doc',
