@@ -45,7 +45,7 @@ class SearchTest extends TestCase{
 
     public function testAll(){
         $user = new UserModel();
-        $res = $user->order('name asc,_id desc')->findAll();
+        $res = $user->order('name asc,_id desc')->limit(3,1)->findAll();
         print_r($res);
     }
 
