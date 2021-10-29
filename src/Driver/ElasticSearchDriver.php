@@ -39,9 +39,7 @@ class ElasticSearchDriver implements Driver
         $body = [];
         if (!empty($this->_condition)) {
             $body = [
-                'query' => [
-                    'match' => $this->_condition
-                ]
+                'query' => $this->_queryPre()
             ];
         }
      /*   $params = [
@@ -211,7 +209,7 @@ class ElasticSearchDriver implements Driver
         return false;  //不支持
     }
 
-    private function _getSort(){
+    protected function _getSort(){
         $sort = [];
         $arr = $this->_getOrderField();
         foreach ($arr as $k => $v){
@@ -219,6 +217,19 @@ class ElasticSearchDriver implements Driver
         }
         return [
             $sort
+        ];
+    }
+
+
+    /*************************** 私有方法   ***********************************/
+
+    /**
+     * 查询where条件解析
+     * @return array
+     */
+    protected function _queryPre(){
+        return [
+            'match' => $this->_condition
         ];
     }
 
@@ -234,7 +245,7 @@ class ElasticSearchDriver implements Driver
      *    ]
      * ]
      */
-    private function _getOrderField()
+    protected function _getOrderField()
     {
         $order =  $this->_order_str;
         if (strstr($order, ',')) {
