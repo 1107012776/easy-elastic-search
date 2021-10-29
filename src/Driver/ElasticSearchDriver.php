@@ -83,7 +83,12 @@ class ElasticSearchDriver implements Driver
             'body' => $body
         ];
         $response = $this->client->search($params);
-        return $response;
+        if (!empty($response['_shards']['successful'])
+            && !empty($response['hits']['hits'])
+        ) {
+            return $response['hits']['hits'];
+        }
+        return [];
     }
 
     public function find()
