@@ -48,30 +48,6 @@ class ElasticSearchDriver implements DriverInter,DriverInitInter
                 'query' => $this->_queryPre()
             ];
         }
-        /*   $params = [
-               'index' => 'study_article',
-               'type' => '_doc',
-               'body' => [
-                   'query' => [
-                       'multi_match' => [
-                           "query" => "分类",
-                           "fields" => ["content_md","article_keyword",'article_descript','author']   #只要里面一个字段包含值 blog 既可以
-                       ],
-   //                     "term"=> [
-   //                         "cate_id"=> 3
-   //                     ]
-                   ],
-                   "size" => 10,
-                   "from" => 0,
-                   "sort" => [
-                       [
-                           "_id" => [
-                               "order" => "desc"
-                           ]
-                       ]
-                   ]
-               ],
-           ];*/
         if (!empty($this->_from)) {
             $body['from'] = intval($this->_from);
         }
@@ -222,6 +198,30 @@ class ElasticSearchDriver implements DriverInter,DriverInitInter
      */
     protected function _queryPre()
     {
+        /*   $params = [
+       'index' => 'study_article',
+       'type' => '_doc',
+       'body' => [
+           'query' => [
+               'multi_match' => [
+                   "query" => "分类",
+                   "fields" => ["content_md","article_keyword",'article_descript','author']   #只要里面一个字段包含值 blog 既可以
+               ],
+//                     "term"=> [
+//                         "cate_id"=> 3
+//                     ]
+           ],
+           "size" => 10,
+           "from" => 0,
+           "sort" => [
+               [
+                   "_id" => [
+                       "order" => "desc"
+                   ]
+               ]
+           ]
+       ],
+   ];*/
         return [
             'match' => $this->_condition
         ];
