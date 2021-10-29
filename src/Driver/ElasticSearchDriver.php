@@ -30,7 +30,11 @@ class ElasticSearchDriver implements Driver
 
     public function __construct($tableName = '')
     {
-        $this->client = ClientBuilder::create()->setHosts([ConfigEnv::get('elasticSearch.host')])->build();
+        if(static::getCid() > -1){  //协程
+            $this->client = ClientBuilder::create()->setHosts([ConfigEnv::get('elasticSearch.host')])->setHandler(new \Yurun\Util\Swoole\Guzzle\Ring\SwooleHandler())->build();
+        }else{
+            $this->client = ClientBuilder::create()->setHosts([ConfigEnv::get('elasticSearch.host')])->build();
+        }
         $this->tableName = $tableName;
     }
 
@@ -269,4 +273,11 @@ class ElasticSearchDriver implements Driver
     }
 
 
+    public static function getCid()
+    {
+        if (!class_exists('\Swoole\Coroutine')) {
+            return -1;
+        }
+        return \Swoole\Coroutine::getCid();
+    }
 }
