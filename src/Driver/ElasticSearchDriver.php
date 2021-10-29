@@ -40,6 +40,24 @@ class ElasticSearchDriver implements DriverInter,DriverInitInter
         $this->tableName = $tableName;
     }
 
+    /**
+     * 查询需要返回的字段
+     * @param array $fields
+     * @return $this
+     *
+     */
+    public function field($fields = [])
+    {
+        if (is_string($fields)) {
+            $fields = explode(',', $fields);
+            $fields = array_filter($fields);
+        }
+        $this->_field = array_merge($this->_field, $fields);
+        $this->_field = array_filter($this->_field);
+        $this->_field = array_unique($this->_field);
+        return $this;
+    }
+
     public function findAll()
     {
         $body = [];
@@ -223,9 +241,12 @@ class ElasticSearchDriver implements DriverInter,DriverInitInter
            ]
        ],
    ];*/
-        return [
-            'match' => $this->_condition
+
+        $query = [
+//            'match' => $this->_condition
+              'match_phrase'  => $this->_condition
         ];
+        return $query;
     }
 
     protected function _getOrderField()
