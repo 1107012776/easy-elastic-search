@@ -116,7 +116,13 @@ class ElasticSearchDriver implements Driver
             'id' => $id
         ];
         $response = $this->client->delete($params);
-        print_r($response);
+        if (!empty($response['_shards']['successful'])
+            && !empty($response['_id'])
+        ) {
+            $this->_last_insert_id = $response['_id'];
+            return $response['_id'];
+        }
+        return false;
     }
 
     public function limit($offset, $limit = 0)
