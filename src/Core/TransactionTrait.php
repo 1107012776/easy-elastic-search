@@ -1,10 +1,13 @@
 <?php
 namespace PhpEasyData\Core;
 
+use PhpEasyData\Inter\TransactionInter;
+
 /**
  * 是否支持事务
  * Trait TransactionTrait
  * @package PhpEasyData\Core
+ * @property TransactionInter $driver
  */
 trait TransactionTrait{
     /**
