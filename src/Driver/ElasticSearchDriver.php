@@ -42,37 +42,37 @@ class ElasticSearchDriver implements Driver
                 'query' => $this->_queryPre()
             ];
         }
-     /*   $params = [
-            'index' => 'study_article',
-            'type' => '_doc',
-            'body' => [
-                'query' => [
-                    'multi_match' => [
-                        "query" => "分类",
-                        "fields" => ["content_md","article_keyword",'article_descript','author']   #只要里面一个字段包含值 blog 既可以
-                    ],
-//                     "term"=> [
-//                         "cate_id"=> 3
-//                     ]
-                ],
-                "size" => 10,
-                "from" => 0,
-                "sort" => [
-                    [
-                        "_id" => [
-                            "order" => "desc"
-                        ]
-                    ]
-                ]
-            ],
-        ];*/
-        if(!empty($this->_from)){
+        /*   $params = [
+               'index' => 'study_article',
+               'type' => '_doc',
+               'body' => [
+                   'query' => [
+                       'multi_match' => [
+                           "query" => "分类",
+                           "fields" => ["content_md","article_keyword",'article_descript','author']   #只要里面一个字段包含值 blog 既可以
+                       ],
+   //                     "term"=> [
+   //                         "cate_id"=> 3
+   //                     ]
+                   ],
+                   "size" => 10,
+                   "from" => 0,
+                   "sort" => [
+                       [
+                           "_id" => [
+                               "order" => "desc"
+                           ]
+                       ]
+                   ]
+               ],
+           ];*/
+        if (!empty($this->_from)) {
             $body['from'] = intval($this->_from);
         }
-        if(!empty($this->_size)){
+        if (!empty($this->_size)) {
             $body['size'] = intval($this->_size);
         }
-        if(!empty($this->_order_str)){
+        if (!empty($this->_order_str)) {
             $body['sort'] = $this->_getSort();
         }
         $params = [
@@ -91,7 +91,7 @@ class ElasticSearchDriver implements Driver
 
     public function find()
     {
-        $this->limit($this->_from,1);
+        $this->limit($this->_from, 1);
         return $this->findAll();
     }
 
@@ -127,10 +127,10 @@ class ElasticSearchDriver implements Driver
     {
         if (empty($limit)) {
             $this->_from = 0;
-            $this->_size = sprintf("%.0f",$offset);
+            $this->_size = sprintf("%.0f", $offset);
         } else {
-            $this->_from = sprintf("%.0f",$offset);
-            $this->_size = sprintf("%.0f",$limit);
+            $this->_from = sprintf("%.0f", $offset);
+            $this->_size = sprintf("%.0f", $limit);
         }
         return $this;
     }
@@ -196,23 +196,24 @@ class ElasticSearchDriver implements Driver
 
     public function startTrans()
     {
-        return false;  //不支持
+        throw new \Exception(__CLASS__ . ' 不支持 ' . __FUNCTION__);
     }
 
     public function commit()
     {
-        return false;  //不支持
+        throw new \Exception(__CLASS__ . ' 不支持 ' . __FUNCTION__);
     }
 
     public function rollback()
     {
-        return false;  //不支持
+        throw new \Exception(__CLASS__ . ' 不支持 ' . __FUNCTION__);
     }
 
-    protected function _getSort(){
+    protected function _getSort()
+    {
         $sort = [];
         $arr = $this->_getOrderField();
-        foreach ($arr as $k => $v){
+        foreach ($arr as $k => $v) {
             $sort[$v[0]] = ['order' => $v[1]];
         }
         return [
@@ -227,7 +228,8 @@ class ElasticSearchDriver implements Driver
      * 查询where条件解析
      * @return array
      */
-    protected function _queryPre(){
+    protected function _queryPre()
+    {
         return [
             'match' => $this->_condition
         ];
@@ -247,7 +249,7 @@ class ElasticSearchDriver implements Driver
      */
     protected function _getOrderField()
     {
-        $order =  $this->_order_str;
+        $order = $this->_order_str;
         if (strstr($order, ',')) {
             $order = explode(',', $order);
         }
