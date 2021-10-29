@@ -7,15 +7,8 @@ namespace PhpEasyData\Inter;
  * Date: 2021/10/24
  * Time: 0:47
  */
-interface Driver
+interface DriverInter
 {
-    /**
-     * @param $tableName
-     * @return Driver
-     */
-    public static function getInstance($tableName);
-
-    public function __construct($tableName);
 
     public function findAll();
 
@@ -23,20 +16,20 @@ interface Driver
 
     /**
      * @param $params
-     * @return Driver
+     * @return DriverInter
      */
     public function where($params);
 
     /**
      * @param $offset
      * @param $limit
-     * @return Driver
+     * @return DriverInter
      */
     public function limit($offset,$limit);
 
     /**
      * @param $params
-     * @return Driver
+     * @return DriverInter
      */
     public function order($params);
 
@@ -44,9 +37,7 @@ interface Driver
 
     public function save($params);
     public function delete();
-    public function startTrans();
-    public function commit();
-    public function rollback();
+
     public function getLastInsertId();
 
 

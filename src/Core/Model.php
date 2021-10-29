@@ -3,6 +3,8 @@
 namespace PhpEasyData\Core;
 
 use PhpEasyData\Inter\Driver;
+use PhpEasyData\Inter\DriverInitInter;
+use PhpEasyData\Inter\DriverInter;
 
 /**
  * Created by PhpStorm.
@@ -15,13 +17,13 @@ abstract class Model
     protected $tableName = '';
     protected $driverClass = ''; // string
     /**
-     * @var Driver
+     * @var DriverInter
      */
     protected $driver;
     public function __construct()
     {
         /**
-         * @var Driver $driverClass
+         * @var DriverInitInter $driverClass
          */
         $driverClass = $this->driverClass;
         $this->driver = $driverClass::getInstance($this->tableName);

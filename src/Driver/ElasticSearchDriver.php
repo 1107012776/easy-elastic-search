@@ -3,8 +3,10 @@
 namespace PhpEasyData\Driver;
 
 use Elasticsearch\ClientBuilder;
+use PhpEasyData\Components\Common;
 use PhpEasyData\Components\ConfigEnv;
-use PhpEasyData\Inter\Driver;
+use PhpEasyData\Inter\DriverInitInter;
+use PhpEasyData\Inter\DriverInter;
 
 /**
  * Created by PhpStorm.
@@ -12,7 +14,7 @@ use PhpEasyData\Inter\Driver;
  * Date: 2021/10/24
  * Time: 0:44
  */
-class ElasticSearchDriver implements Driver
+class ElasticSearchDriver implements DriverInter,DriverInitInter
 {
     protected $tableName;
     protected $client;
@@ -30,7 +32,7 @@ class ElasticSearchDriver implements Driver
 
     public function __construct($tableName = '')
     {
-        if(static::getCid() > -1){  //协程
+        if(Common::getCid() > -1){  //协程
             $this->client = ClientBuilder::create()->setHosts([ConfigEnv::get('elasticSearch.host')])->setHandler(new \Yurun\Util\Swoole\Guzzle\Ring\SwooleHandler())->build();
         }else{
             $this->client = ClientBuilder::create()->setHosts([ConfigEnv::get('elasticSearch.host')])->build();
@@ -198,20 +200,6 @@ class ElasticSearchDriver implements Driver
         return $this->_last_insert_id;
     }
 
-    public function startTrans()
-    {
-        throw new \Exception(__CLASS__ . ' 不支持 ' . __FUNCTION__);
-    }
-
-    public function commit()
-    {
-        throw new \Exception(__CLASS__ . ' 不支持 ' . __FUNCTION__);
-    }
-
-    public function rollback()
-    {
-        throw new \Exception(__CLASS__ . ' 不支持 ' . __FUNCTION__);
-    }
 
     protected function _getSort()
     {
@@ -239,45 +227,11 @@ class ElasticSearchDriver implements Driver
         ];
     }
 
-    /**
-     * 获取orderBy字段
-     * @return $order =>
-     * [
-     *    [
-     *        'id','asc',
-     *    ],
-     *    [
-     *       'create_time','desc'
-     *    ]
-     * ]
-     */
     protected function _getOrderField()
     {
-        $order = $this->_order_str;
-        if (strstr($order, ',')) {
-            $order = explode(',', $order);
-        }
-        if (is_array($order)) {  //多个order by
-            foreach ($order as &$v) {
-                $v = trim($v);
-                $v = explode(' ', $v);
-                $v = array_filter($v);  //去空值
-            }
-        } else {
-            $order = trim($order);
-            $order = explode(' ', $order);
-            $order = array_filter($order); //去空值
-            $order = [$order];
-        }
-        return $order;
+        return Common::getOrderField($this->_order_str);
     }
 
 
-    public static function getCid()
-    {
-        if (!class_exists('\Swoole\Coroutine')) {
-            return -1;
-        }
-        return \Swoole\Coroutine::getCid();
-    }
+
 }
