@@ -134,6 +134,7 @@ class ElasticSearchDriver implements Driver
     public function order($params)
     {
         $this->_order_str = $params;
+        return $this;
     }
 
     public function insert($data)
