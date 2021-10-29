@@ -2,6 +2,7 @@
 
 namespace PhpEasyData\Core;
 
+
 use PhpEasyData\Inter\DriverInitInter;
 use PhpEasyData\Inter\DriverInter;
 
@@ -39,6 +40,13 @@ abstract class Model
     public function findAll()
     {
         return $this->driver->findAll();
+    }
+
+
+    public function field($fields = [])
+    {
+        $this->driver->field($fields);
+        return $this;
     }
 
     public function find()

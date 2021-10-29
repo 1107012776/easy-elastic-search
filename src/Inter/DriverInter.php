@@ -14,6 +14,8 @@ interface DriverInter
 
     public function find();
 
+    public function field($params);
+
     /**
      * @param $params
      * @return DriverInter
