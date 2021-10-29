@@ -198,17 +198,17 @@ class ElasticSearchDriver implements Driver
 
     public function startTrans()
     {
-
+        return false;  //不支持
     }
 
     public function commit()
     {
-
+        return false;  //不支持
     }
 
     public function rollback()
     {
-
+        return false;  //不支持
     }
 
     private function _getSort(){
