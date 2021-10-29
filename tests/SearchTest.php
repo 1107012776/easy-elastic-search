@@ -45,10 +45,18 @@ class SearchTest extends TestCase{
 
     public function testAll(){
         $user = new UserModel();
-        $res = $user->order('name asc,_id desc')->limit(3,1)->findAll();
+        $res = $user->order('name asc,_id desc')->limit(0,4)->findAll();
         print_r($res);
     }
 
+
+    public function testAll1(){
+        $user = new UserModel();
+        $res = $user->where([
+            'name' => 111
+        ])->findAll();
+        print_r($res);
+    }
     public function testOne(){
         $user = new UserModel();
         $res = $user->order('name asc,_id desc')->find();
