@@ -85,6 +85,22 @@ class ElasticSearchDriver implements Driver
         return $this;
     }
 
+    public function delete()
+    {
+        if (!empty($this->_condition['id'])) {
+            $id = $this->_condition['id'];
+        } else {
+            return false;
+        }
+        $params = [
+            'index' => $this->tableName,
+            'type' => '_doc',
+            'id' => $id
+        ];
+        $response = $this->client->delete($params);
+        print_r($response);
+    }
+
     public function limit($offset, $limit)
     {
 

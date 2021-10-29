@@ -7,6 +7,7 @@
  */
 namespace PhpEasyData\Tests;
 use PhpEasyData\Components\ConfigEnv;
+use PhpEasyData\Tests\Model\ArticleModel;
 use PhpEasyData\Tests\Model\UserModel;
 use PHPUnit\Framework\TestCase;
 
@@ -29,8 +30,8 @@ class SearchTest extends TestCase{
 
 
     public function testInsert(){
-      $user = new UserModel();
-      $res = $user->insert(['id'=>9,'name' => 1111]);
+      $user = new ArticleModel();
+      $res = $user->insert(['name' => 'John Doe1','tt'=>1]);
       print_r($res);
     }
 
@@ -45,6 +46,15 @@ class SearchTest extends TestCase{
     public function testAll(){
         $user = new UserModel();
         $res = $user->findAll();
+        print_r($res);
+    }
+
+
+    public function testDelete(){
+        $user = new UserModel();
+        $res = $user->where([
+            'id' => 9
+        ])->delete();
         print_r($res);
     }
 

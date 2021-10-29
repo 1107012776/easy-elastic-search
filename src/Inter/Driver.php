@@ -43,6 +43,7 @@ interface Driver
     public function insert($params);
 
     public function save($params);
+    public function delete();
     public function startTrans();
     public function commit();
     public function rollback();

@@ -1,7 +1,7 @@
 <?php
 
 namespace PhpEasyData\Core;
-use PhpEasyData\Driver\ElasticSearchDriver;
+
 use PhpEasyData\Inter\Driver;
 
 /**
@@ -101,6 +101,11 @@ abstract class Model
     public function rollback()
     {
         return $this->driver->rollback();
+    }
+
+    public function delete()
+    {
+        return $this->driver->delete();
     }
 
 }
