@@ -25,7 +25,7 @@ class QueryBuilders
 
     /**
      * 这个例子包含两个匹配查询，返回地址中包含“mill”和“lane”的所有帐户:
-     * bool must子句指定了所有必须为true的查询，则将文档视为匹配。
+     * bool must子句指定了所有必须为true的查询，则将文档视为匹配。(与)
      */
     public function must($must)
     {

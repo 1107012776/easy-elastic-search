@@ -225,104 +225,15 @@ class ElasticSearchDriver implements DriverInter,DriverInitInter
        $queryBuild =  new QueryBuilders();
        $term = [];
        foreach ($this->_condition as $key => $val){
-           $zwKey = ':' . $key;  //占位符
            if (is_array($val)) {
-               switch ($val[0]) {
-                   case 'neq':
-                       if (!is_array($val[1])) {
-                           $zwKey .= '_neq_0';
-                           $this->_condition_str .= ' and ' . $key . ' != ' . $zwKey;
-                           $this->_condition_bind[$zwKey] = $val[1];
-                           break;
-                       }
-                       foreach ($val[1] as $k => $v) {   //多个不等于
-                           $zwKeyNeq = $zwKey . '_neq_' . $k;
-                           $this->_condition_str .= ' and ' . $key . ' != ' . $zwKeyNeq;
-                           $this->_condition_bind[$zwKeyNeq] = $v;
-                       }
-                       break;
-                   case 'like':
-                       $zwKey .= '_0';
-                       $this->_condition_str .= ' and ' . $key . ' like ' . $zwKey;
-                       $this->_condition_bind[$zwKey] = $val[1];
-                       break;
-                   case 'gt':
-                       $zwKey .= '_0';
-                       $this->_condition_str .= ' and ' . $key . ' > ' . $zwKey;
-                       $this->_condition_bind[$zwKey] = $val[1];
-                       break;
-                   case 'egt':
-                       $zwKey .= '_0';
-                       $this->_condition_str .= ' and ' . $key . ' >= ' . $zwKey;
-                       $this->_condition_bind[$zwKey] = $val[1];
-                       break;
-                   case 'elt':
-                       $zwKey .= '_0';
-                       $this->_condition_str .= ' and ' . $key . ' <= ' . $zwKey;
-                       $this->_condition_bind[$zwKey] = $val[1];
-                       break;
-                   case 'lt':
-                       $zwKey .= '_0';
-                       $this->_condition_str .= ' and ' . $key . ' < ' . $zwKey;
-                       $this->_condition_bind[$zwKey] = $val[1];
-                       break;
-                   case 'in':
-                       $zwKeyIn = '';
-                       foreach ($val[1] as $k => $v) {
-                           $zwKeyIn .= ',' . $zwKey . '_in_' . $k;
-                           $this->_condition_bind[$zwKey . $k] = $v;
-                       }
-                       trim($zwKeyIn, ',');
-                       $this->_condition_str .= ' and ' . $key . ' in (' . $zwKeyIn . ')';
-                       break;
-                   case 'notIn':
-                       $zwKeyIn = '';
-                       foreach ($val[1] as $k => $v) {
-                           $zwKeyIn .= ',' . $zwKey . '_notIn_' . $k;
-                           $this->_condition_bind[$zwKey . $k] = $v;
-                       }
-                       trim($zwKeyIn, ',');
-                       $this->_condition_str .= ' and ' . $key . ' not in (' . $zwKeyIn . ')';
-                       break;
-                   case 'between':
-                       $zwKeyMin = $zwKey . '_between_min_0';
-                       $zwKeyMax = $zwKey . '_between_max_0';
-                       $this->_condition_str .= ' and ' . $key . ' <= ' . $zwKeyMax;
-                       $this->_condition_str .= ' and ' . $key . ' >= ' . $zwKeyMin;
-                       $this->_condition_bind[$zwKeyMin] = min($val[1]);
-                       $this->_condition_bind[$zwKeyMax] = max($val[1]);
-                       break;
-                   case 'notBetween':
-                       $zwKeyMin = $zwKey . '_notBetween_min_0';
-                       $zwKeyMax = $zwKey . '_notBetween_max_0';
-                       $this->_condition_str .= ' and ' . $key . ' > ' . $zwKeyMax;
-                       $this->_condition_str .= ' and ' . $key . ' < ' . $zwKeyMin;
-                       $this->_condition_bind[$zwKeyMin] = min($val[1]);
-                       $this->_condition_bind[$zwKeyMax] = max($val[1]);
-                       break;
-                   case 'is':
-                       $zwKeyIs = $zwKey . '_is_0';
-                       if ($val[1] === null) {
-                           $this->_condition_str .= ' and ' . $key . ' is NULL';
-                       } else {
-                           $this->_condition_str .= ' and ' . $key . ' is ' . $zwKeyIs;
-                           $this->_condition_bind[$zwKeyIs] = $val[1];
-                       }
-                       break;
-                   case 'isNot':
-                       $zwKeyIs = $zwKey . '_isNot_0';
-                       if ($val[1] === null) {
-                           $this->_condition_str .= ' and ' . $key . ' is not NULL';
-                       } else {
-                           $this->_condition_str .= ' and ' . $key . ' is not ' . $zwKeyIs;
-                           $this->_condition_bind[$zwKeyIs] = $val[1];
-                       }
-                       break;
-               }
+
            } else {
-               $term[] = $val;
+               $term[]['term'] = [
+                   $key => $val
+               ];
            }
        }
+        $queryBuild->must($term);
         /*   $params = [
        'index' => 'study_article',
        'type' => '_doc',
