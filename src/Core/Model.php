@@ -20,6 +20,7 @@ abstract class Model
      * @var DriverInter
      */
     protected $driver;
+
     public function __construct()
     {
         /**
@@ -29,11 +30,13 @@ abstract class Model
         $this->driver = $driverClass::getInstance($this->tableName);
     }
 
-    public function insert($data){
+    public function insert($data)
+    {
         return $this->driver->insert($data);
     }
 
-    public function save($data){
+    public function save($data)
+    {
         return $this->driver->save($data);
     }
 

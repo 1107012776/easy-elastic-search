@@ -1,4 +1,5 @@
 <?php
+
 namespace PhpEasyData\Core;
 
 use PhpEasyData\Inter\TransactionInter;
@@ -9,7 +10,8 @@ use PhpEasyData\Inter\TransactionInter;
  * @package PhpEasyData\Core
  * @property TransactionInter $driver
  */
-trait TransactionTrait{
+trait TransactionTrait
+{
     /**
      * 启动事务
      * @access public

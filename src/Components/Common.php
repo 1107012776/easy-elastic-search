@@ -1,4 +1,5 @@
 <?php
+
 namespace PhpEasyData\Components;
 /**
  * Created by PhpStorm.
@@ -6,7 +7,8 @@ namespace PhpEasyData\Components;
  * Date: 2021/10/24
  * Time: 0:42
  */
-class Common{
+class Common
+{
     public static function getCid()
     {
         if (!class_exists('\Swoole\Coroutine')) {

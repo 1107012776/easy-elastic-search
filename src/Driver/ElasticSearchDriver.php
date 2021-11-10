@@ -15,7 +15,7 @@ use PhpEasyData\Inter\DriverInter;
  * Date: 2021/10/24
  * Time: 0:44
  */
-class ElasticSearchDriver implements DriverInter,DriverInitInter
+class ElasticSearchDriver implements DriverInter, DriverInitInter
 {
     protected $tableName;
     protected $client;
@@ -33,9 +33,9 @@ class ElasticSearchDriver implements DriverInter,DriverInitInter
 
     public function __construct($tableName = '')
     {
-        if(Common::getCid() > -1){  //协程
+        if (Common::getCid() > -1) {  //协程
             $this->client = ClientBuilder::create()->setHosts([ConfigEnv::get('elasticSearch.host')])->setHandler(new \Yurun\Util\Swoole\Guzzle\Ring\SwooleHandler())->build();
-        }else{
+        } else {
             $this->client = ClientBuilder::create()->setHosts([ConfigEnv::get('elasticSearch.host')])->build();
         }
         $this->tableName = $tableName;
@@ -222,17 +222,17 @@ class ElasticSearchDriver implements DriverInter,DriverInitInter
      */
     protected function _queryPre()
     {
-       $queryBuild =  new QueryBuilders();
-       $term = [];
-       foreach ($this->_condition as $key => $val){
-           if (is_array($val)) {
+        $queryBuild = new QueryBuilders();
+        $term = [];
+        foreach ($this->_condition as $key => $val) {
+            if (is_array($val)) {
 
-           } else {
-               $term[]['term'] = [
-                   $key => $val
-               ];
-           }
-       }
+            } else {
+                $term[]['term'] = [
+                    $key => $val
+                ];
+            }
+        }
         $queryBuild->must($term);
         /*   $params = [
        'index' => 'study_article',
@@ -267,7 +267,6 @@ class ElasticSearchDriver implements DriverInter,DriverInitInter
     {
         return Common::getOrderField($this->_order_str);
     }
-
 
 
 }

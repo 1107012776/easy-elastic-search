@@ -27,7 +27,7 @@ interface DriverInter
      * @param $limit
      * @return DriverInter
      */
-    public function limit($offset,$limit);
+    public function limit($offset, $limit);
 
     /**
      * @param $params
@@ -38,10 +38,10 @@ interface DriverInter
     public function insert($params);
 
     public function save($params);
+
     public function delete();
 
     public function getLastInsertId();
-
 
 
 }

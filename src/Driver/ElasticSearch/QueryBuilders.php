@@ -50,7 +50,8 @@ class QueryBuilders
      * 这个例子包含两个匹配查询，返回地址中既不包含“mill”也不包含“lane”的所有帐户:
      * bool must_not子句指定了一个查询列表，其中没有一个查询必须为真，才能将文档视为匹配。
      */
-    public function must_not($must_not){
+    public function must_not($must_not)
+    {
         /* curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
         {
           "query": {
@@ -71,7 +72,8 @@ class QueryBuilders
      * 这个例子包含两个匹配查询，并返回地址中包含“mill”或“lane”的所有帐户:
      * bool should子句指定了一个查询列表，其中任何一个查询必须为真，才能将文档视为匹配。(其实就是或)
      */
-    public function should($should){
+    public function should($should)
+    {
         /*curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
             {
               "query": {
@@ -93,15 +95,16 @@ class QueryBuilders
      * 构造Query DSL
      * @return array
      */
-    public function build(){
+    public function build()
+    {
         $queryBuild = [];
-        if(!empty($this->must)){
+        if (!empty($this->must)) {
             $queryBuild['bool']['must'] = $this->must;
         }
-        if(!empty($this->must_not)){
+        if (!empty($this->must_not)) {
             $queryBuild['bool']['must_not'] = $this->must_not;
         }
-        if(!empty($this->should)){
+        if (!empty($this->should)) {
             $queryBuild['bool']['should'] = $this->should;
         }
         return $queryBuild;

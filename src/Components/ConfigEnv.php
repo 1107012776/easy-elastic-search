@@ -1,4 +1,5 @@
 <?php
+
 namespace PhpEasyData\Components;
 /**
  * 版权声明：本文为CSDN博主「「已注销」」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
@@ -6,7 +7,8 @@ namespace PhpEasyData\Components;
  * Class ConfigLoad
  * @package PhpEasyData\Components
  */
-class ConfigEnv{
+class ConfigEnv
+{
     const ENV_PREFIX = 'PHP_';
 
     /**
