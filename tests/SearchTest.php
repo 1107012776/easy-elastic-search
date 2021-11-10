@@ -56,10 +56,22 @@ class SearchTest extends TestCase{
             'name' => 111
         ])->findAll();*/
         $res = $user->where([
-            'name' => 111
+            'tt'=>1
         ])->findAll();
         print_r($res);
     }
+
+    public function testAllAticle(){
+        $article = new ArticleModel();
+        /*       $res = $user->field(['name'])->where([
+                   'name' => 111
+               ])->findAll();*/
+        $res = $article->where([
+            'tt'=>1
+        ])->findAll();
+        print_r($res);
+    }
+
     public function testOne(){
         $user = new UserModel();
         $res = $user->order('name asc,_id desc')->find();
