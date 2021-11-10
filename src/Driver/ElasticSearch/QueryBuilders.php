@@ -18,10 +18,10 @@ namespace PhpEasyData\Driver\ElasticSearch;
 class QueryBuilders
 {
     public $should = [];
-    public $must = [];  //有点类似或
+    public $must = [];  //(其实就是与)
 
 
-    public $must_not = [];
+    public $must_not = []; //(其实就是或)
 
     /**
      * 这个例子包含两个匹配查询，返回地址中包含“mill”和“lane”的所有帐户:
