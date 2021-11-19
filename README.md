@@ -3,3 +3,6 @@
 
 ### 描述
 ElasticSearch  支持  （开发中...）
+
+### 安装
+composer require lys/php-easy-data
