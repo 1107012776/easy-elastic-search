@@ -1,8 +1,8 @@
 {
-  "name": "lys/php-easy-data",
+  "name": "lys/easy-elastic-search",
   "description": "",
   "keywords": [],
-  "homepage": "https://github.com/1107012776/php-easy-data",
+  "homepage": "https://github.com/1107012776/easy-elastic-search",
   "type": "library",
   "license": "Apache-2.0",
   "authors": [
