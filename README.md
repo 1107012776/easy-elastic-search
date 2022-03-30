@@ -1,8 +1,6 @@
-# php-easy-data
-一个通用第三方数据访问抽象层，简化第三方数据层的对接，便于开发
+# easy-elastic-search
 
-### 描述
-ElasticSearch  支持  （开发中...）
+封装的简易ElasticSearch类库
 
 ### 安装
-composer require lys/php-easy-data
+composer require lys/easy-elastic-search
