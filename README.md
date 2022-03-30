@@ -5,6 +5,6 @@
 ### 安装
 You can install the package via composer:
 ```bash
-composer require lys/easy-elastic-search
+composer require lys/easy-elastic-search=dev-main
 ```
 
