@@ -1,13 +1,13 @@
 <?php
 
-namespace PhpEasyData\Driver;
+namespace PhpEasyEs\Driver;
 
 use Elasticsearch\ClientBuilder;
-use PhpEasyData\Components\Common;
-use PhpEasyData\Components\ConfigEnv;
-use PhpEasyData\Driver\ElasticSearch\QueryBuilders;
-use PhpEasyData\Inter\DriverInitInter;
-use PhpEasyData\Inter\DriverInter;
+use PhpEasyEs\Components\Common;
+use PhpEasyEs\Components\ConfigEnv;
+use PhpEasyEs\Driver\ElasticSearch\QueryBuilders;
+use PhpEasyEs\Inter\DriverInitInter;
+use PhpEasyEs\Inter\DriverInter;
 
 /**
  * Created by PhpStorm.

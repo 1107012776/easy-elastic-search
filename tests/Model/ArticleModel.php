@@ -1,10 +1,10 @@
 <?php
 
-namespace PhpEasyData\Tests\Model;
+namespace PhpEasyEs\Tests\Model;
 
-use PhpEasyData\Core\Model;
-use PhpEasyData\Driver\ElasticSearchDriver;
-use PhpEasyData\Inter\DriverInter;
+use PhpEasyEs\Core\Model;
+use PhpEasyEs\Driver\ElasticSearchDriver;
+use PhpEasyEs\Inter\DriverInter;
 
 class ArticleModel extends Model implements DriverInter
 {

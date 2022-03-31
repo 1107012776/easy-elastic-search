@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpEasyData\Driver\ElasticSearch;
+namespace PhpEasyEs\Driver\ElasticSearch;
 /**
  * https://blog.csdn.net/danger0629/article/details/102695894
  * GET /news/_search
@@ -13,7 +13,7 @@ namespace PhpEasyData\Driver\ElasticSearch;
  * }
  * }
  * Class MultiMatch
- * @package PhpEasyData\Driver\ElasticSearch
+ * @package PhpEasyEs\Driver\ElasticSearch
  */
 class MultiMatch
 {

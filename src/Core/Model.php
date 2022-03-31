@@ -1,10 +1,10 @@
 <?php
 
-namespace PhpEasyData\Core;
+namespace PhpEasyEs\Core;
 
 
-use PhpEasyData\Inter\DriverInitInter;
-use PhpEasyData\Inter\DriverInter;
+use PhpEasyEs\Inter\DriverInitInter;
+use PhpEasyEs\Inter\DriverInter;
 
 /**
  * Created by PhpStorm.

@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpEasyData\Inter;
+namespace PhpEasyEs\Inter;
 /**
  * Created by PhpStorm.
  * User: 11070

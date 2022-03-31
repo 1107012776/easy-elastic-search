@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpEasyData\Driver\ElasticSearch;
+namespace PhpEasyEs\Driver\ElasticSearch;
 /**
  * https://zhuanlan.zhihu.com/p/68159178
  *
@@ -9,7 +9,7 @@ namespace PhpEasyData\Driver\ElasticSearch;
  * https://blog.csdn.net/danger0629/article/details/102695894  elasticsearch优化之多字段搜索multi_match查询
  * Query DSL
  * Class QueryBuilders
- * @package PhpEasyData\Driver\ElasticSearch
+ * @package PhpEasyEs\Driver\ElasticSearch
  * 注意一下，term结合bool使用时：should是或，must是与，must_not是非
  *
  *
