@@ -1,6 +1,6 @@
 <?php
 
-namespace EasyES\Components;
+namespace EasyElasticSearch\Components;
 /**
  * Created by PhpStorm.
  * User: 11070

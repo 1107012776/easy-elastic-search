@@ -1,6 +1,6 @@
 <?php
 
-namespace EasyES\Inter;
+namespace EasyElasticSearch\Inter;
 /**
  * Created by PhpStorm.
  * User: 11070

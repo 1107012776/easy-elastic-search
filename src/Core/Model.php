@@ -1,10 +1,10 @@
 <?php
 
-namespace EasyES\Core;
+namespace EasyElasticSearch\Core;
 
 
-use EasyES\Inter\DriverInitInter;
-use EasyES\Inter\DriverInter;
+use EasyElasticSearch\Inter\DriverInitInter;
+use EasyElasticSearch\Inter\DriverInter;
 
 /**
  * Created by PhpStorm.
