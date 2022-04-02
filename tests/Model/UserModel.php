@@ -1,10 +1,10 @@
 <?php
 
-namespace PhpEasyEs\Tests\Model;
+namespace EasyES\Tests\Model;
 
-use PhpEasyEs\Core\Model;
-use PhpEasyEs\Driver\ElasticSearchDriver;
-use PhpEasyEs\Inter\DriverInter;
+use EasyES\Core\Model;
+use EasyES\Driver\ElasticSearchDriver;
+use EasyES\Inter\DriverInter;
 
 class UserModel extends Model implements DriverInter
 {

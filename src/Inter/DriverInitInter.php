@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpEasyEs\Inter;
+namespace EasyES\Inter;
 
 
 interface DriverInitInter

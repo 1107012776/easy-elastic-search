@@ -6,11 +6,11 @@
  * Time: 0:30
  */
 
-namespace PhpEasyEs\Tests;
+namespace EasyES\Tests;
 
-use PhpEasyEs\Components\ConfigEnv;
-use PhpEasyEs\Tests\Model\ArticleModel;
-use PhpEasyEs\Tests\Model\UserModel;
+use EasyES\Components\ConfigEnv;
+use EasyES\Tests\Model\ArticleModel;
+use EasyES\Tests\Model\UserModel;
 use PHPUnit\Framework\TestCase;
 
 $file_load_path = '../../../autoload.php';

@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpEasyEs\Components;
+namespace EasyES\Components;
 /**
  * Created by PhpStorm.
  * User: 11070

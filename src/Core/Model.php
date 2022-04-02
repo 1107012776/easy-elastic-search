@@ -1,10 +1,10 @@
 <?php
 
-namespace PhpEasyEs\Core;
+namespace EasyES\Core;
 
 
-use PhpEasyEs\Inter\DriverInitInter;
-use PhpEasyEs\Inter\DriverInter;
+use EasyES\Inter\DriverInitInter;
+use EasyES\Inter\DriverInter;
 
 /**
  * Created by PhpStorm.
