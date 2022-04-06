@@ -24,12 +24,12 @@
   },
   "autoload": {
     "psr-4": {
-      "PhpEasyEs\\": "src/"
+      "EasyElasticSearch\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "PhpEasyEs\\Tests\\": "tests/"
+      "EasyElasticSearch\\Tests\\": "tests/"
     }
   },
   "provide": {
