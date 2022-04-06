@@ -34,6 +34,9 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
     public function __construct($tableName = '')
     {
         $hosts = ConfigEnv::get('elasticSearch.host');
+        if (strpos($hosts, ',') !== false) {
+            $hosts = explode(',', $hosts);
+        }
         if (is_string($hosts)) {
             $hosts = [$hosts];
         }
