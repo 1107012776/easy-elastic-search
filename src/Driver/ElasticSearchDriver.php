@@ -33,11 +33,19 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
 
     public function __construct($tableName = '')
     {
-        if (Common::getCid() > -1) {  //协程
-            $this->client = ClientBuilder::create()->setHosts([ConfigEnv::get('elasticSearch.host')])->setHandler(new \Yurun\Util\Swoole\Guzzle\Ring\SwooleHandler())->build();
-        } else {
-            $this->client = ClientBuilder::create()->setHosts([ConfigEnv::get('elasticSearch.host')])->build();
+        $hosts = ConfigEnv::get('elasticSearch.host');
+        if (is_string($hosts)) {
+            $hosts = [$hosts];
         }
+        if (Common::getCid() > -1) {  //协程
+            $client = ClientBuilder::create()
+                ->setHosts($hosts)
+                ->setHandler(new \Yurun\Util\Swoole\Guzzle\Ring\SwooleHandler());
+        } else {
+            $client = ClientBuilder::create()
+                ->setHosts($hosts);
+        }
+        $this->client = $client->build();
         $this->tableName = $tableName;
     }
 
