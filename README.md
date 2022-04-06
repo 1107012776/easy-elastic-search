@@ -9,6 +9,11 @@ composer require lys/easy-elastic-search=dev-main
 ```
 
 ### 示例
+You need to configure an env file.
+```
+[elasticSearch]
+host=http://127.0.0.1:9200
+```
 
 ```php
 <?php
