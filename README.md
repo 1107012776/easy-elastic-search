@@ -24,11 +24,11 @@ host=http://127.0.0.1:9200   #多个请使用英文逗号分割如 http://127.0.
  * Time: 0:30
  */
 
-namespace PhpEasyData\Tests;
+namespace EasyElasticSearch\Tests;
 
-use PhpEasyData\Components\ConfigEnv;
-use PhpEasyData\Tests\Model\ArticleModel;
-use PhpEasyData\Tests\Model\UserModel;
+use EasyElasticSearch\Components\ConfigEnv;
+use EasyElasticSearch\Tests\Model\ArticleModel;
+use EasyElasticSearch\Tests\Model\UserModel;
 use PHPUnit\Framework\TestCase;
 
 $file_load_path = '../../../autoload.php';
