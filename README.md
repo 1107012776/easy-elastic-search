@@ -12,7 +12,7 @@ composer require lys/easy-elastic-search=dev-main
 You need to configure an env file.
 ```
 [elasticSearch]
-host=http://127.0.0.1:9200
+host=http://127.0.0.1:9200   #多个请使用英文逗号分割如 http://127.0.0.1:9200,http://192.168.1.6:9200
 ```
 
 ```php
