@@ -48,6 +48,11 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
             $client = ClientBuilder::create()
                 ->setHosts($hosts);
         }
+        $username = ConfigEnv::get('elasticSearch.username');
+        if (!empty($username)) {
+            $password = ConfigEnv::get('elasticSearch.password');
+            $client->setBasicAuthentication($username, $password);
+        }
         $this->client = $client->build();
         $this->tableName = $tableName;
     }
