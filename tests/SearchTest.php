@@ -20,6 +20,7 @@ if (file_exists($file_load_path)) {
     include '../vendor/autoload.php';
 }
 ConfigEnv::loadFile('.env');
+
 class SearchTest extends TestCase
 {
 
@@ -58,7 +59,6 @@ class SearchTest extends TestCase
         $res = $model->order('_id desc')->limit(0, 4)->findAll();
         print_r($res);
     }
-
 
 
     public function testAll1()
