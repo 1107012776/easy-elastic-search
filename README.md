@@ -7,6 +7,12 @@ You can install the package via composer:
 ```bash
 composer require lys/easy-elastic-search=dev-main
 ```
+### 注意
+```bash
+//协程环境需要安装如下:
+composer require yurunsoft/guzzle-swoole=v2.2
+
+```
 
 ### 示例
 You need to configure an env file.
