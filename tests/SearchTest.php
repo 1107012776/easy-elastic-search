@@ -52,6 +52,14 @@ class SearchTest extends TestCase
         print_r($res);
     }
 
+    public function testArticleAll()
+    {
+        $model = new ArticleModel();
+        $res = $model->order('_id desc')->limit(0, 4)->findAll();
+        print_r($res);
+    }
+
+
 
     public function testAll1()
     {
