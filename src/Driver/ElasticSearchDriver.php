@@ -100,7 +100,11 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
             'type' => '_doc',
             'body' => $body
         ];
-        $response = $this->client->search($params);
+        try{
+            $response = $this->client->search($params);
+        }catch (\Elasticsearch\Common\Exceptions\Missing404Exception $e){
+            return [];
+        }
         if (!empty($response['_shards']['successful'])
             && !empty($response['hits']['hits'])
         ) {
