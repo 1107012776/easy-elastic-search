@@ -192,8 +192,8 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
         if (isset($data['id'])) {
             unset($data['id']);
         }
-        if (!empty($this->_condition['_id'])) {
-            $id = $this->_condition['_id'];
+        if (!empty($this->_condition['id'])) {
+            $id = $this->_condition['id'];
         } else {
             return false;
         }
@@ -245,6 +245,9 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
         $queryBuild = new QueryBuilders();
         $term = [];
         foreach ($this->_condition as $key => $val) {
+            if($key == 'id'){
+                $key = '_id';
+            }
             if (is_array($val)) {
 
             } else {

@@ -56,14 +56,15 @@ class SearchTest extends TestCase
     public function testArticleAll()
     {
         $model = new ArticleModel();
-        $res = $model->order('_id desc')->limit(0, 4)->findAll();
+//        $res = $model->order('_id desc')->limit(0, 4)->findAll();
+        $res = $model->limit(0,100)->findAll();
         print_r($res);
     }
 
     public function testArticleOne()
     {
         $model = new ArticleModel();
-        $res = $model->where(['_id' => 'yNoNKYABh7k0PM1nyYhZ'])->find();
+        $res = $model->where(['id' => 'hNoeQYABh7k0PM1nj4nT'])->find();
         print_r($res);
     }
 
