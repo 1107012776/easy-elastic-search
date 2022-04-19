@@ -192,8 +192,8 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
         if (isset($data['id'])) {
             unset($data['id']);
         }
-        if (!empty($this->_condition['id'])) {
-            $id = $this->_condition['id'];
+        if (!empty($this->_condition['_id'])) {
+            $id = $this->_condition['_id'];
         } else {
             return false;
         }
