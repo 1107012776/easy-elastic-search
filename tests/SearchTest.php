@@ -60,6 +60,13 @@ class SearchTest extends TestCase
         print_r($res);
     }
 
+    public function testArticleOne()
+    {
+        $model = new ArticleModel();
+        $res = $model->where(['_id' => 'yNoNKYABh7k0PM1nyYhZ'])->find();
+        print_r($res);
+    }
+
 
     public function testAll1()
     {
