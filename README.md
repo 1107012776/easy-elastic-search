@@ -2,6 +2,11 @@
 
 简易ElasticSearch类库，犹如操作数据库，便于开发，基于elasticsearch/elasticsearch
 
+# 环境
+
+### ElasticSearch7.7.0 Docker安装教程如下
+https://www.developzhe.com/single249.html
+
 # 安装
 You can install the package via composer:
 ```bash
