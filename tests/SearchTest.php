@@ -56,7 +56,6 @@ class SearchTest extends TestCase
     public function testArticleAll()
     {
         $model = new ArticleModel();
-//        $res = $model->order('_id desc')->limit(0, 4)->findAll();
         $res = $model->limit(0,100)->findAll();
         print_r($res);
     }
@@ -72,11 +71,22 @@ class SearchTest extends TestCase
     public function testAll1()
     {
         $user = new UserModel();
-        /*       $res = $user->field(['name'])->where([
-                   'name' => 111
-               ])->findAll();*/
         $res = $user->where([
             'tt' => 1
+        ])->findAll();
+        print_r($res);
+    }
+
+    /**
+     * 模糊匹配
+     */
+    public function testAllMultiMatch()
+    {
+        $article = new ArticleModel();
+        $res = $article->where([
+             'article_title,content_md,article_keyword,article_descript,author' => [
+                'multi_match','吹牛'
+            ]
         ])->findAll();
         print_r($res);
     }

@@ -19,6 +19,7 @@ class QueryBuilders
 {
     public $should = []; //(其实就是或)
     public $must = [];  //(其实就是与)
+    public $multi_match = [];  //(其实就是与)
 
 
     public $must_not = [];
@@ -91,6 +92,12 @@ class QueryBuilders
 
     }
 
+    public function multi_match($multi_match)
+    {
+        $this->multi_match = $multi_match;
+        return true;
+    }
+
     /**
      * 构造Query DSL
      * @return array
@@ -106,6 +113,9 @@ class QueryBuilders
         }
         if (!empty($this->should)) {
             $queryBuild['bool']['should'] = $this->should;
+        }
+        if (!empty($this->multi_match)) {
+            $queryBuild['multi_match'] = $this->multi_match;
         }
         return $queryBuild;
     }

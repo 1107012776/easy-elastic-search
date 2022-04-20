@@ -100,9 +100,9 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
             'type' => '_doc',
             'body' => $body
         ];
-        try{
+        try {
             $response = $this->client->search($params);
-        }catch (\Elasticsearch\Common\Exceptions\Missing404Exception $e){
+        } catch (\Elasticsearch\Common\Exceptions\Missing404Exception $e) {
             return [];
         }
         if (!empty($response['_shards']['successful'])
@@ -244,19 +244,33 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
     {
         $queryBuild = new QueryBuilders();
         $term = [];
+        $type = 'eq';
         foreach ($this->_condition as $key => $val) {
-            if($key == 'id'){
+            if ($key == 'id') {
                 $key = '_id';
             }
             if (is_array($val)) {
-
+                if (isset($val[0]) && $val[0] == 'multi_match') {
+                    $type = 'multi_match';
+                    $term = [
+                        'query' => $val[1],
+                        "fields" => strpos($key, ',') === false ? [$key] : explode(',', $key)    #只要里面一个字段包含值 blog 既可以
+                    ];
+                }
             } else {
                 $term[]['term'] = [
                     $key => $val
                 ];
             }
         }
-        $queryBuild->must($term);
+        switch ($type){
+            case 'eq':
+                $queryBuild->must($term);
+                break;
+            case 'multi_match':
+                $queryBuild->multi_match($term);
+                break;
+        }
         /*   $params = [
        'index' => 'study_article',
        'type' => '_doc',
