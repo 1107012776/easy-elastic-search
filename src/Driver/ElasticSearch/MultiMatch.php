@@ -20,7 +20,11 @@ class MultiMatch
     public $query = '';
     public $fields = [];
     //分别是best_fields（最佳字段） 、 most_fields（多数字段） 和 cross_fields（跨字段）
-    public $type = 'best_fields';
+    public $type = self::BEST;
+    const BEST = 'best_fields';
+    const MOST = 'most_fields';
+    const CROSS = 'cross_fields';
+
 
     public $content = [];
 
@@ -29,7 +33,11 @@ class MultiMatch
         $this->content = $multi_match;
     }
 
-    public function build(){
+    public function build()
+    {
+        if (empty($this->content['type'])) {
+            $this->content['type'] = 'best_fields';
+        }
         return $this->content;
     }
 

@@ -87,7 +87,7 @@ class SearchTest extends TestCase
              'article_title,content_md,article_keyword,article_descript,author' => [
                 'multi_match','项目'
             ]
-        ])->findAll();
+        ])->field('article_title')->findAll();
         print_r($res);
     }
 
