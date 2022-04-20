@@ -85,7 +85,7 @@ class SearchTest extends TestCase
         $article = new ArticleModel();
         $res = $article->where([
              'article_title,content_md,article_keyword,article_descript,author' => [
-                'multi_match','吹牛'
+                'multi_match','项目'
             ]
         ])->findAll();
         print_r($res);

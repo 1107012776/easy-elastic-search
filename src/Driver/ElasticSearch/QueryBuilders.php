@@ -115,7 +115,7 @@ class QueryBuilders
             $queryBuild['bool']['should'] = $this->should;
         }
         if (!empty($this->multi_match)) {
-            $queryBuild['multi_match'] = $this->multi_match;
+            $queryBuild['multi_match'] = (new MultiMatch($this->multi_match))->build();
         }
         return $queryBuild;
     }

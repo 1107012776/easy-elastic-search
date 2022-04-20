@@ -254,8 +254,11 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
                     $type = 'multi_match';
                     $term = [
                         'query' => $val[1],
-                        "fields" => strpos($key, ',') === false ? [$key] : explode(',', $key)    #只要里面一个字段包含值 blog 既可以
+                        "fields" => strpos($key, ',') === false ? [$key] : explode(',', $key),    #只要里面一个字段包含值 blog 既可以
                     ];
+                    if(isset($val[2])){
+                        $term['type'] = $val[2];
+                    }
                 }
             } else {
                 $term[]['term'] = [
