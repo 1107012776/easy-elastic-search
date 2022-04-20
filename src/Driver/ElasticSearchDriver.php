@@ -272,7 +272,7 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
                 ];
             }
         }
-        !empty($must_term) && $queryBuild->must($multi_match_term);
+        !empty($must_term) && $queryBuild->must($must_term);
         !empty($multi_match_term) && $queryBuild->multi_match($multi_match_term);
         /*   $params = [
        'index' => 'study_article',
