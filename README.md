@@ -126,3 +126,6 @@ class SearchTest extends TestCase
 }
 
 ```
+
+# 案例
+https://www.what.pub/
