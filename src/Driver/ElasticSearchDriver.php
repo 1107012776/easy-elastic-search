@@ -26,7 +26,6 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
     protected $_size = 0; //偏移之后返回数
     protected $_from = 0; //偏移量
     protected $_order_str = ''; //排序
-    protected $_where_type = Model::TYPE_MUST;
 
     public static function getInstance($tableName)
     {
@@ -113,12 +112,6 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
             return $response['hits']['hits'];
         }
         return [];
-    }
-
-    public function whereType($type)
-    {
-        $this->_where_type = $type;
-        return $this;
     }
 
     public function find()
