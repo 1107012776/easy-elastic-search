@@ -72,7 +72,7 @@ class SearchTest extends TestCase
     public function testArticleOne()
     {
         $model = new ArticleModel();
-        $res = $model->where(['id' => 'hNoeQYABh7k0PM1nj4nT'])->find();
+        $res = $model->where(['id' => 'f9pqSoABh7k0PM1nEYoz'])->find();
 //        $res = $model->where(['id' => 'itqAJ4ABh7k0PM1nMIiI'])->find();
         print_r($res);
     }
@@ -96,7 +96,8 @@ class SearchTest extends TestCase
         $res = $article->where([
             'article_title,content_md,article_keyword,article_descript,author' => [
                 'multi_match', '项目'
-            ]
+            ],
+//            '_id' => 'ydpqSoABh7k0PM1nFore'
         ])->field('article_title,article_cate')->findAll();
         print_r($res);
     }
