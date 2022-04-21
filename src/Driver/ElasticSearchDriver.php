@@ -117,7 +117,7 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
     {
         $this->limit($this->_from, 1);
         $search = $this->findAll();
-        return isset($search[0]) ? $search[0]:[];
+        return isset($search[0]) ? $search[0] : [];
     }
 
     public function where($condition)
@@ -226,8 +226,9 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
     /**
      * 删除索引
      */
-    public function deleteIndex($indexName){
-        if($indexName != $this->tableName){
+    public function deleteIndex($indexName)
+    {
+        if ($indexName != $this->tableName) {
             return false;
         }
         $params = [

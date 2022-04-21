@@ -56,7 +56,7 @@ class SearchTest extends TestCase
     public function testArticleAll()
     {
         $model = new ArticleModel();
-        $list = $model->limit(0,100)->findAll();
+        $list = $model->limit(0, 100)->findAll();
         var_dump($list);
 
 
@@ -94,8 +94,8 @@ class SearchTest extends TestCase
     {
         $article = new ArticleModel();
         $res = $article->where([
-             'article_title,content_md,article_keyword,article_descript,author' => [
-                'multi_match','项目'
+            'article_title,content_md,article_keyword,article_descript,author' => [
+                'multi_match', '项目'
             ]
         ])->field('article_title,article_cate')->findAll();
         print_r($res);
