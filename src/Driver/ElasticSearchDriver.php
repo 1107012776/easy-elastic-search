@@ -275,7 +275,7 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
     protected function _queryPre()
     {
         $queryBuild = new QueryBuilders();
-        $must_term = $multi_match_term = [];
+        $must_not_term = $should_term = $must_term = $multi_match_term = [];
         foreach ($this->_condition as $key => $val) {
             if ($key == 'id') {
                 $key = '_id';
@@ -296,7 +296,9 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
                 ];
             }
         }
+        !empty($should_term) && $queryBuild->should($should_term);
         !empty($must_term) && $queryBuild->must($must_term);
+        !empty($must_not_term) && $queryBuild->must_not($must_not_term);
         !empty($multi_match_term) && $queryBuild->multi_match($multi_match_term);
         /*   $params = [
        'index' => 'study_article',
