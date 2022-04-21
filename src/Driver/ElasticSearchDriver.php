@@ -116,7 +116,8 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
     public function find()
     {
         $this->limit($this->_from, 1);
-        return $this->findAll();
+        $search = $this->findAll();
+        return isset($search[0]) ? $search[0]:[];
     }
 
     public function where($condition)
