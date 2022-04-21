@@ -14,6 +14,9 @@ use EasyElasticSearch\Inter\DriverInter;
  */
 abstract class Model
 {
+    const TYPE_SHOULD = 'should';
+    const TYPE_MUST = 'must';
+    const TYPE_MUST_NOT = 'must_not';
     protected $tableName = '';
     protected $driverClass = ''; // string
     /**

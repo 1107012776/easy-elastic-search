@@ -105,17 +105,27 @@ class QueryBuilders
     public function build()
     {
         $queryBuild = [];
-        if (!empty($this->must)) {
-            $queryBuild['bool']['must'] = $this->must;
-        }
-        if (!empty($this->must_not)) {
-            $queryBuild['bool']['must_not'] = $this->must_not;
-        }
-        if (!empty($this->should)) {
-            $queryBuild['bool']['should'] = $this->should;
-        }
         if (!empty($this->multi_match)) {
             $queryBuild['multi_match'] = (new MultiMatch($this->multi_match))->build();
+            if (!empty($this->must)) {
+                $queryBuild['must'] = $this->must;
+            }
+            if (!empty($this->must_not)) {
+                $queryBuild['must_not'] = $this->must_not;
+            }
+            if (!empty($this->should)) {
+                $queryBuild['should'] = $this->should;
+            }
+        }else{
+            if (!empty($this->must)) {
+                $queryBuild['bool']['must'] = $this->must;
+            }
+            if (!empty($this->must_not)) {
+                $queryBuild['bool']['must_not'] = $this->must_not;
+            }
+            if (!empty($this->should)) {
+                $queryBuild['bool']['should'] = $this->should;
+            }
         }
         return $queryBuild;
     }

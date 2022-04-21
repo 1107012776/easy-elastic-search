@@ -2,6 +2,7 @@
 
 namespace EasyElasticSearch\Driver;
 
+use EasyElasticSearch\Core\Model;
 use Elasticsearch\ClientBuilder;
 use EasyElasticSearch\Components\Common;
 use EasyElasticSearch\Components\ConfigEnv;
@@ -25,6 +26,7 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
     protected $_size = 0; //偏移之后返回数
     protected $_from = 0; //偏移量
     protected $_order_str = ''; //排序
+    protected $_where_type = Model::TYPE_MUST;
 
     public static function getInstance($tableName)
     {
@@ -111,6 +113,12 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
             return $response['hits']['hits'];
         }
         return [];
+    }
+
+    public function whereType($type)
+    {
+        $this->_where_type = $type;
+        return $this;
     }
 
     public function find()
@@ -282,6 +290,7 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
             }
             if (is_array($val)) {
                 if (isset($val[0]) && $val[0] == 'multi_match') {
+                    $this->_where_type = 'multi_match';
                     $multi_match_term = [
                         'query' => $val[1],
                         "fields" => strpos($key, ',') === false ? [$key] : explode(',', $key),    #只要里面一个字段包含值 blog 既可以
@@ -289,17 +298,24 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
                     if (isset($val[2])) {
                         $multi_match_term['type'] = $val[2];
                     }
+                    !empty($multi_match_term) && $queryBuild->multi_match($multi_match_term);
                 }
             } else {
-                $must_term[]['term'] = [
+                $must_not_term = $should_term = $must_term[]['term'] = [
                     $key => $val
                 ];
             }
         }
-        !empty($should_term) && $queryBuild->should($should_term);
-        !empty($must_term) && $queryBuild->must($must_term);
-        !empty($must_not_term) && $queryBuild->must_not($must_not_term);
-        !empty($multi_match_term) && $queryBuild->multi_match($multi_match_term);
+        switch ($this->_where_type){
+            case Model::TYPE_SHOULD:
+                !empty($should_term) && $queryBuild->should($should_term);
+                break;
+            case Model::TYPE_MUST:
+                !empty($must_term) && $queryBuild->must($must_term);
+                break;
+            case Model::TYPE_MUST_NOT:
+                !empty($must_not_term) && $queryBuild->must_not($must_not_term);
+        }
         /*   $params = [
        'index' => 'study_article',
        'type' => '_doc',
