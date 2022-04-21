@@ -56,14 +56,24 @@ class SearchTest extends TestCase
     public function testArticleAll()
     {
         $model = new ArticleModel();
-        $res = $model->limit(0,100)->findAll();
-        print_r($res);
+        $list = $model->limit(0,100)->findAll();
+        var_dump($list);
+
+
+    }
+
+    public function testDeleteIndex()
+    {
+        $model = new ArticleModel();
+        $response = $model->deleteIndex('article');
+        var_dump($response);
     }
 
     public function testArticleOne()
     {
         $model = new ArticleModel();
         $res = $model->where(['id' => 'hNoeQYABh7k0PM1nj4nT'])->find();
+//        $res = $model->where(['id' => 'itqAJ4ABh7k0PM1nMIiI'])->find();
         print_r($res);
     }
 
@@ -87,7 +97,7 @@ class SearchTest extends TestCase
              'article_title,content_md,article_keyword,article_descript,author' => [
                 'multi_match','项目'
             ]
-        ])->field('article_title')->findAll();
+        ])->field('article_title,article_cate')->findAll();
         print_r($res);
     }
 

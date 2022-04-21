@@ -89,4 +89,11 @@ abstract class Model
         return $this->driver->delete();
     }
 
+    public function deleteIndex($indexName)
+    {
+        return $this->driver->deleteIndex($indexName);
+    }
+
+
+
 }

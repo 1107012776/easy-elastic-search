@@ -45,6 +45,8 @@ interface DriverInter
 
     public function delete();
 
+    public function deleteIndex($indexName);
+
     public function getLastInsertId();
 
 

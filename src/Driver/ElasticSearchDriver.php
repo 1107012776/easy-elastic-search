@@ -222,6 +222,28 @@ class ElasticSearchDriver implements DriverInter, DriverInitInter
         return false;
     }
 
+
+    /**
+     * 删除索引
+     */
+    public function deleteIndex($indexName){
+        if($indexName != $this->tableName){
+            return false;
+        }
+        $params = [
+            'index' => $this->tableName,
+        ];
+        try {
+            $response = $this->client->indices()->delete($params);
+        } catch (\Elasticsearch\Common\Exceptions\Missing404Exception $e) {
+            return false;
+        }
+        if (!empty($response['acknowledged'])) {
+            return true;
+        }
+        return false;
+    }
+
     public function getLastInsertId()
     {
         return $this->_last_insert_id;
