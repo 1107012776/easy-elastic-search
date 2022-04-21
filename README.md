@@ -11,8 +11,7 @@ You can install the package via composer:
 ```bash
 composer require lys/easy-elastic-search=dev-main
 ```
-ElasticSearch7.7.0 Docker安装教程如下：
-https://www.developzhe.com/single249.html
+ElasticSearch7.7.0 Docker安装教程：https://www.developzhe.com/single249.html
 # 注意
 ```bash
 //协程环境需要安装如下:
