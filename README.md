@@ -13,6 +13,9 @@ composer require lys/easy-elastic-search=dev-main
 ```
 ElasticSearch7.7.0 Docker安装教程：https://www.developzhe.com/single249.html
 # 注意
+
+It is currently in the testing stage, please use it in the production environment with caution.
+
 ```bash
 //协程环境需要安装如下:
 composer require yurunsoft/guzzle-swoole=v2.2
