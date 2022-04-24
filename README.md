@@ -14,6 +14,8 @@ composer require lys/easy-elastic-search=dev-main
 ElasticSearch7.7.0 Docker安装教程：https://www.developzhe.com/single249.html
 # 注意
 
+(目前是测试阶段) 
+
 It is currently in the testing stage, please use it in the production environment with caution.
 
 ```bash
